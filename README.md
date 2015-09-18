@@ -15,9 +15,9 @@ Supported Formats
 Requirements
 ============
 
-This relies on a work glsl vim syntax file, vim does not include such a file.
+This relies on a working glsl vim syntax file, vim does not include such a file.
 
-I develop this against: https://github.com/tikhomirov/vim-glsl
+I developed this against: https://github.com/tikhomirov/vim-glsl
 
 
 TODO
