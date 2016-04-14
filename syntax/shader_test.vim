@@ -15,7 +15,7 @@ syn region stHeader start="\[" end="\]" oneline
 syn include @GLSL syntax/glsl.vim " Require glsl to do glsl highlighting
 syn region stHeader
 	\ matchgroup=stHeader
-	\ start="^\[\(vertex\|fragment\|geometry\|tessalation\|compute\) shader\]$"
+	\ start="^\[\(vertex\|fragment\|geometry\|tessalation\|compute\) \(shader\|program\)\]$"
 	\ end="^\["me=s-1
 	\ fold
 	\ keepend
