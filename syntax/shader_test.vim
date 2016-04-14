@@ -12,6 +12,13 @@ syn keyword stTodo contained TODO FIXME XXX
 " Regions
 syn region stHeader start="\[" end="\]" oneline
 
+syn region stHeader
+	\ matchgroup=stHeader
+	\ start="\[require\]"
+	\ end="^\["me=s-1
+	\ fold
+	\ keepend
+
 syn include @GLSL syntax/glsl.vim " Require glsl to do glsl highlighting
 syn region stHeader
 	\ matchgroup=stHeader
