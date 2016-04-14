@@ -6,20 +6,20 @@ unlet b:current_syntax
 runtime! syntax/glsl.vim
 
 syn keyword sttKeyword draw probe ortho clear
-syn keyword sttProbeType rgba rgb
-syn keyword sttDrawType rect
-syn keyword sttClearType color
+syn keyword sttProbeType rgba rgb depth all 
+syn keyword sttDrawType rect tex ortho patch instanced arrays
+syn keyword sttClearType color depth
 
-syn match sttInt "\v<\d+>"
-syn match sttFloat "\v<\d+.\d+>"
+syn match sttNumber "\v<\d+>"
+syn match sttNumber "\v<\d+.\d+>"
 
-syn region sttDraw start=/^draw/ end=/\n/ oneline contains=sttDrawType contains=sttInt contains=sttFloat
-syn region sttProbe start=/^probe/ end=/\n/ oneline contains=sttProbeType contains=sttInt contains=sttFloat
-syn region sttClear start=/^clear/ end=/\n/ oneline contains=sttClearType contains=sttInt contains=sttFloat
+syn region sttDraw start=/^draw/ end=/\n/ oneline contains=sttDrawType contains=sttNumber
+syn region sttProbe start=/^probe/ end=/\n/ oneline contains=sttProbeType contains=sttNumber
+syn region sttClear start=/^clear/ end=/\n/ oneline contains=sttClearType contains=sttNumber
 
-hi def link sttKeyword     Keyword
-hi def link sttProbeType   Type
-hi def link sttDrawType    Type
-hi def link sttClearType   Type
-hi def link sttFloat       Float
-hi def link sttInt         Int
+hi def link sttKeyword             Keyword
+hi def link sttAtomicCounter       Keyword
+hi def link sttProbeType           Type
+hi def link sttDrawType            Type
+hi def link sttClearType           Type
+hi def link sttNumber              Number
