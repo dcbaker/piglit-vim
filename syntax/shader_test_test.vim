@@ -7,6 +7,8 @@ syn match stFloat contained "-\?\d\+.\d\+"
 syn match stOctal contained "-\?0x\o\+"
 syn match stStage contained "\(GL_VERTEX_SHADER\|GL_FRAGMENT_SHADER\|GL_GEOMETRY_SHADER\|GL_TESS_CONTROL_SHADER\|GL_TESS_EVALUATION_SHADER\|GL_COMPUTE_SHADER\)"
 syn match stString contained "[A-Za-z_]\+"
+syn match stOperator contained "\(==\|!=\|>\|=>\|<\|<=\)"
+syn match stBraces contained "[(){}\[\]]"
 
 " Commands {{{1
 " Draw {{{2
@@ -80,10 +82,9 @@ syn match stProbeType "rgb \([-0-9]\+\s\?\)\{2} \([-0-9.]\+\s\?\)\{3}" contains=
 syn match stProbeType "all rgba \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr contained
 syn match stProbeType "all rgb \([-0-9.]\+\s\?\)\{3}" contains=stInt,stFloat nextgroup=stErr contained
 syn match stProbeType "depth \([-0-9.]\+\s\?\)\{3}" contains=stInt,stFloat nextgroup=stErr contained
-" TODO: probe atomic counter %d %s %d
-" TODO: probe ssbo uint %d %s 0x%x
-" TODO: probe ssbo uint %d %s %d
-" TODO: probe rect rgba <something>
+syn match stProbeType "atomic counter [-0-9]\+ \(>\|=>\|==\|<=\|<\|!=\) [-0-9]\+" contains=stOperator,stInt nextgroup=stErr contained
+syn match stProbeType "rect rgba \(\s\?(\([-.0-9]\+,\?\s*\)\{4})\)\{2}" contains=stFloat,stInt,stBraces nextgroup=stErr contained
+syn match stProbeType "ssbo uint [-0-9]\+ \(>\|=>\|==\|<=\|<\|!=\) \(0x\)\?[-0-9.]\+" contains=stOperator,stInt,stOctal nextgroup=stErr contained
 
 " relative probe: {{{2
 " TODO: relative probe rgba <something>
@@ -144,6 +145,8 @@ hi def link stOctal                Number
 hi def link stFloat                Float
 hi def link stErr                  Error
 hi def link stString               String
+hi def link stOperator             Operator
+hi def link stBraces               Operator
 
 " Color links {{{1
 " Uncontained types {{{2
