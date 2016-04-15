@@ -99,7 +99,8 @@ syn match stTolerance "^tolerance \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat 
 syn region stShadeRegion matchgroup=stState start="^shade model" end="$" keepend oneline contains=stShadeType
 syn match stShadeType "\(flat\|smooth\)" nextgroup=stErr contained
 
-" TODO: ssbo %d {{{2
+" ssbo {{{2
+syn match stSSBO "^ssbo [-0-9]\+" contains=stInt nextgroup=stErr
 
 " texture: {{{2
 " TODO: texture rgbw <something>
@@ -159,6 +160,7 @@ hi def link stHint                 stState
 hi def link stClipPlane            stState
 hi def link stCompute              stState
 hi def link stTolerance            stState
+hi def link stSSBO                 stState
 
 " Contained types {{{2
 hi def link stDrawType             stType
