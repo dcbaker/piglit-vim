@@ -87,9 +87,10 @@ syn match stProbeType "rect rgba \(\s\?(\([-.0-9]\+,\?\s*\)\{4})\)\{2}" contains
 syn match stProbeType "ssbo uint [-0-9]\+ \(>\|=>\|==\|<=\|<\|!=\) \(0x\)\?[-0-9.]\+" contains=stOperator,stInt,stOctal nextgroup=stErr contained
 
 " relative probe: {{{2
-" TODO: relative probe rgba <something>
-" TODO: relative probe rgb <something>
-" TODO: relative probe rect rgb <somethihng>
+syn region stProbeRegion matchgroup=stState start="^relative probe" end="$" keepend oneline contains=stRelativeProbeType
+syn match stRelativeProbeType "rgba (\([-0-9.]\+,\?\s\?\)\{2}) (\([-0-9.]\+,\?\s\?\)\{4})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
+syn match stRelativeProbeType "rgb (\([-0-9.]\+,\?\s\?\)\{2}) (\([-0-9.]\+,\?\s\?\)\{3})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
+syn match stRelativeProbeType "rect rgb (\([-0-9.]\+,\?\s\?\)\{4}) (\([-0-9.]\+,\?\s\?\)\{3})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
 
 " TODO: tolerance %f %f %f %f {{{2
 
@@ -166,5 +167,6 @@ hi def link stACState              stState
 hi def link stClearType            stType
 hi def link stFbType               stType
 hi def link stProbeType            stType
+hi def link stRelativeProbeType    stType
 
 " vim: fdm=marker
