@@ -95,9 +95,9 @@ syn match stRelativeProbeType "rect rgb (\([-0-9.]\+,\?\s\?\)\{4}) (\([-0-9.]\+,
 " tolerance {{{2
 syn match stTolerance "^tolerance \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr
 
-" shade model: {{{2
-" TODO: shade model flat
-" TODO: shade model smooth
+" shade model {{{2
+syn region stShadeRegion matchgroup=stState start="^shade model" end="$" keepend oneline contains=stShadeType
+syn match stShadeType "\(flat\|smooth\)" nextgroup=stErr contained
 
 " TODO: ssbo %d {{{2
 
@@ -170,5 +170,7 @@ hi def link stClearType            stType
 hi def link stFbType               stType
 hi def link stProbeType            stType
 hi def link stRelativeProbeType    stType
+hi def link stToleranceType        stType
+hi def link stShadeType            stType
 
 " vim: fdm=marker
