@@ -12,6 +12,8 @@ syn keyword stTodo contained TODO FIXME XXX
 " Regions
 syn region stHeader start="\[" end="\]" oneline
 
+"TODO: PUll the header section out into a separate include like the test
+"section
 syn region stHeader
 	\ matchgroup=stHeader
 	\ start="\[require\]"
