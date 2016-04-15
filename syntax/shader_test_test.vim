@@ -92,7 +92,8 @@ syn match stRelativeProbeType "rgba (\([-0-9.]\+,\?\s\?\)\{2}) (\([-0-9.]\+,\?\s
 syn match stRelativeProbeType "rgb (\([-0-9.]\+,\?\s\?\)\{2}) (\([-0-9.]\+,\?\s\?\)\{3})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
 syn match stRelativeProbeType "rect rgb (\([-0-9.]\+,\?\s\?\)\{4}) (\([-0-9.]\+,\?\s\?\)\{3})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
 
-" TODO: tolerance %f %f %f %f {{{2
+" tolerance {{{2
+syn match stTolerance "^tolerance \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr
 
 " shade model: {{{2
 " TODO: shade model flat
@@ -157,6 +158,7 @@ hi def link stFrustum              stState
 hi def link stHint                 stState
 hi def link stClipPlane            stState
 hi def link stCompute              stState
+hi def link stTolerance            stState
 
 " Contained types {{{2
 hi def link stDrawType             stType
