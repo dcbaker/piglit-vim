@@ -125,7 +125,8 @@ syn match stTextureType "shadowRect [-0-9]\+ (\([-0-9]\+,\?\s*\)\{2})" contains=
 syn match stTextureType "shadow1DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{2})" contains=stInt,stDems,stBraces nextgroup=stErr contained
 syn match stTextureType "shadow2DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{3})" contains=stInt,stDems,stBraces nextgroup=stErr contained
 
-" TODO: texcoord <somethign> {{{2
+" texcoord {{{2
+syn match stTexcoord "^texcoord [0-9] (\s*\([-0-9.]\+\s*,\?\s*\)\{4})" contains=stInt,stFloat,stBraces,stDelimiter nextgroup=stErr
 
 " TODO: texparameter <somethign> {{{2
 
@@ -173,6 +174,7 @@ hi def link stClipPlane            stState
 hi def link stCompute              stState
 hi def link stTolerance            stState
 hi def link stSSBO                 stState
+hi def link stTexcoord             stState
 
 " Contained types {{{2
 hi def link stGLext                stConstant
