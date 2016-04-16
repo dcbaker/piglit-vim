@@ -128,7 +128,52 @@ syn match stTextureType "shadow2DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{3})" contai
 " texcoord {{{2
 syn match stTexcoord "^texcoord [0-9] (\s*\([-0-9.]\+\s*,\?\s*\)\{4})" contains=stInt,stFloat,stBraces,stDelimiter nextgroup=stErr
 
-" TODO: texparameter <somethign> {{{2
+" texparameter {{{2
+"
+syn region stTextureparamRegion matchgroup=stState start="^texparameter" end="$" keepend oneline contains=stTexparamTarget
+syn match stTexparamTarget "1D\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "2D\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "3D\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "Rect\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "Cube\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "1DArray\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "2DArray\s*" contained nextgroup=stTexparamType,stErr
+syn match stTexparamTarget "CubeArray\s*" contained nextgroup=stTexparamType,stErr
+
+syn match stTexparamType "min\s*" contained nextgroup=stTexparamMin,stErr
+syn match stTexparamType "mag\s*" contained nextgroup=stTexparamMag,stErr
+syn match stTexparamType "compare_func\s*" contained nextgroup=stTexparamComp,stErr
+syn match stTexparamType "swizzle_r\s*" contained nextgroup=stTexparamSwiz,stErr
+syn match stTexparamType "depth_mode\s*" contained nextgroup=stTexparamDepth,stErr
+
+syn match stTexparamComp "greater" contained nextgroup=stErr
+syn match stTexparamComp "gequal" contained nextgroup=stErr
+syn match stTexparamComp "less" contained nextgroup=stErr
+syn match stTexparamComp "lequal" contained nextgroup=stErr
+syn match stTexparamComp "equal" contained nextgroup=stErr
+syn match stTexparamComp "notequal" contained nextgroup=stErr
+syn match stTexparamComp "never" contained nextgroup=stErr
+syn match stTexparamComp "always" contained nextgroup=stErr
+
+syn match stTexparamMin "linear" contained nextgroup=stErr
+syn match stTexparamMin "nearest" contained nextgroup=stErr
+syn match stTexparamMin "nearest_mipmap_nearest" contained nextgroup=stErr
+syn match stTexparamMin "linear_mipmap_nearest" contained nextgroup=stErr
+syn match stTexparamMin "nearest_mipmap_linear" contained nextgroup=stErr
+syn match stTexparamMin "linear_mipmap_linear" contained nextgroup=stErr
+
+syn match stTexparamMag "linear" contained nextgroup=stErr
+syn match stTexparamMag "nearest" contained nextgroup=stErr
+
+syn match stTexparamSwiz "red" contained nextgroup=stErr
+syn match stTexparamSwiz "green" contained nextgroup=stErr
+syn match stTexparamSwiz "blue" contained nextgroup=stErr
+syn match stTexparamSwiz "alpha" contained nextgroup=stErr
+
+syn match stTexparamDepth "intensity" contained nextgroup=stErr
+syn match stTexparamDepth "luminance" contained nextgroup=stErr
+syn match stTexparamDepth "alpha" contained nextgroup=stErr
+syn match stTexparamDepth "red" contained nextgroup=stErr
 
 " TODO: uniform <somethign> {{{2
 
@@ -191,5 +236,12 @@ hi def link stToleranceType        stType
 hi def link stShadeType            stType
 hi def link stTextureType          stType
 hi def link stDems                 stType
+hi def link stTexparamType         stConstant
+hi def link stTexparamTarget       stConstant
+hi def link stTexparamComp         stConstant
+hi def link stTexparamMin          stConstant
+hi def link stTexparamMag          stConstant
+hi def link stTexparamSwiz         stConstant
+hi def link stTexparamDepth        stConstant
 
 " vim: fdm=marker

@@ -71,3 +71,27 @@ texture shadow2DArray 0 (32, 32, 1)
 texcoord 0 (0.4, -0.3, 0.1, 0.5)
 texcoord 1 ( -1, 1, 8, 0.5 )
 texcoord 1 ( -1 , 1 , 8 , 0.5 )
+texparameter 1D min nearest
+texparameter 2D min linear
+texparameter 3D min linear_mipmap_linear
+texparameter Rect min nearest_mipmap_linear
+texparameter Cube min linear_mipmap_nearest
+texparameter 1DArray min nearest_mipmap_nearest
+texparameter 2DArray mag linear
+texparameter CubeArray mag nearest
+texparameter 2DArray compare_func greater
+texparameter 2DArray compare_func gequal
+texparameter 2DArray compare_func less
+texparameter 2DArray compare_func lequal
+texparameter 2DArray compare_func equal
+texparameter 2DArray compare_func notequal
+texparameter 2DArray compare_func never
+texparameter 2DArray compare_func always
+texparameter 2D swizzle_r red
+texparameter 2D swizzle_r green
+texparameter 2D swizzle_r blue
+texparameter 2D swizzle_r alpha
+texparameter 1D depth_mode intensity
+texparameter 1D depth_mode luminance
+texparameter 1D depth_mode alpha
+texparameter 1D depth_mode red
