@@ -1,0 +1,70 @@
+[test]
+draw rect -80.0 0.0 0.0 0.0
+draw rect -0 0 0 04
+draw rect -0x7 0x7 0x7 0x7
+draw rect ortho -80.0 0.0 0.0 0.0
+draw rect ortho -0 0 0 04
+draw rect ortho -0x7 0x7 0x7 0x7
+draw rect ortho patch -80.0 0.0 0.0 0.0
+draw rect ortho patch -0 0 0 04
+draw rect ortho patch -0x7 0x7 0x7 0x7
+draw rect patch -80.0 0.0 0.0 0.0
+draw rect patch -0 0 0 04
+draw rect patch -0x7 0x7 0x7 0x7
+draw instanced rect 4 0.0 0.0 0.0 0.0
+draw arrays GLFOOBAR 4 4
+active shader program GL_VERTEX_SHADER
+atomic counters -5
+atomic counters 5
+clear
+clear color 5 6 7 8
+clear depth 4
+clip plane 0.0 0.0 0.0 0.0
+compute 0 0 0
+enable GL_FOOBAR GL_TRUE
+disable GL_FOOBAR GL_TRUE
+frustum 0.0 0.0 0.0 0.0 0.0 0.0
+hint GL_FOOBAR GL_FALSE
+image texture 4 GL_FOOBAR
+memory barrier foo
+ortho
+ortho 0.0 0.0 0.0 -0.0
+probe rgb 0 0 0.0 0.0 0.0
+probe rgba 0 0 0.0 0.0 0.0 0.0
+probe all rgb 0 0 0
+probe all rgba 0.0 0.0 0.0 0.0
+probe depth 0 0.0 0.0
+probe atomic counter 5 == 1
+probe atomic counter -7 != 1024
+probe rect rgba (241, 0,  9, 250) (1.00, 1.00, 0.0, 1.0)
+probe rect rgba (241, 0,  9, 250) (1, 1, 0, 1)
+probe ssbo uint 0 > 5
+probe ssbo uint 0 == 0x4
+relative probe rgba (1, 1) (0, 0, 0, 0)
+relative probe rgba (1, 1) (0.0, 0.0, 0.0, 0.0)
+relative probe rgba (1.0, 1.0) (0.0, 0.0, 0.0, 0.0)
+relative probe rgb (1, 1) (0, 0, 0)
+relative probe rgb (1, 1) (0.0, 0.0, 0.0)
+relative probe rgb (1.0, 1.0) (0.0, 0.0, 0.0)
+relative probe rect rgb (0, 0, 0, 0) (0, 0, 0)
+relative probe rect rgb (0.0, 0.0, 0.0, 0.0) (0, 0, 0)
+relative probe rect rgb (0, 0, 0, 0) (0.0, 0.0, 0.0)
+relative probe rect rgb (0.0, 0.0, 0.0, 0.0) (0.0, 0.0, 0.0)
+tolerance 0 0 0 0
+tolerance 0.0 0.0 0.0 0.0
+tolerance 0.0 0 0.0 0.0
+shade model flat
+shade model smooth
+ssbo 1024
+texture rgbw 0 (16, 16) GL_RGBA8
+texture miptree 0
+texture checkerboard 0 0 (32, 32) (0.0, 0.0, 0.0, 0.0) (0.0, 1.0, 0.0, 0.0)
+texture junk 2DArray 4 (8, 8, 4)
+texture junk 2DArray 4 ( 8, 8, 4 )
+texture rgbw 1DArray 0 ( 64 , 4 )
+texture rgbw 2DArray 0 ( 64 , 4 , 8 )
+texture shadow1D 0 (32)
+texture shadow2D 0 (32, 32)
+texture shadowRect 0 (32, 32)
+texture shadow1DArray 0 (32, 1)
+texture shadow2DArray 0 (32, 32, 1)
