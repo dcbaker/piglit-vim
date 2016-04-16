@@ -1,4 +1,7 @@
 " Test section of a shader_Test
+" TODO: some people like putting spaces between all sorts of things, the test
+" shader needs to be extended to include that and this file needs a ton of \s*
+" and \s\+ replacements
 
 " Global {{{1
 syn match stErr "\s*\S\+" nextgroup=stErr
@@ -9,6 +12,11 @@ syn match stStage contained "\(GL_VERTEX_SHADER\|GL_FRAGMENT_SHADER\|GL_GEOMETRY
 syn match stString contained "[A-Za-z_]\+"
 syn match stOperator contained "\(==\|!=\|>\|=>\|<\|<=\)"
 syn match stBraces contained "[(){}\[\]]"
+syn match stGLext contained "GL_[A-Z0-9_]\+"
+syn match stDelimiter contained "[,]"
+
+" special type to keep stInt from matching {1,2,3}DArray
+syn match stDems contained "[1-3]D"
 
 " Commands {{{1
 " Draw {{{2
@@ -103,17 +111,19 @@ syn match stShadeType "\(flat\|smooth\)" nextgroup=stErr contained
 syn match stSSBO "^ssbo [-0-9]\+" contains=stInt nextgroup=stErr
 
 " texture: {{{2
-" TODO: texture rgbw <something>
-" TODO: texture miptree %d
-" TODO: texture checkerboard <something>
-" TODO: texture junk 2DArray <something>
-" TODO: texture rgbw 2DArray <something>
-" TODO: texture rgbw 1DArray <something>
-" TODO: texture shadow2D <something>
-" TODO: texture shadowRect <something>
-" TODO: texture shadow1D <something>
-" TODO: texture shadow1DArray <something>
-" TODO: texture shadow2DArray <something>
+syn region stTextureRegion matchgroup=stState start="^texture" end="$" keepend oneline contains=stTextureType
+" TODO: the GL type here could almost certainly be constrained better
+syn match stTextureType "rgbw [-0-9]\+ ([-0-9]\+, [-0-9]\+) GL_[A-Z0-9_]\+" contains=stInt,stBraces,stGLext,stDelimiter nextgroup=stErr contained
+syn match stTextureType "rgbw 1DArray [-0-9]\+ (\(\s*[-0-9]\+\s*,\?\)\{2}\s*)" contains=stInt,stDems,stBraces,stDelimiter nextgroup=stErr contained
+syn match stTextureType "rgbw 2DArray [-0-9]\+ (\(\s*[-0-9]\+\s*,\?\)\{3}\s*)" contains=stInt,stDems,stBraces,stDelimiter nextgroup=stErr contained
+syn match stTextureType "miptree [-0-9]\+" contains=stInt nextgroup=stErr contained
+syn match stTextureType "checkerboard [-0-9]\+ [-0-9]\+ (\([-0-9]\+,\?\s\?\)\{2}) \((\([-0-9.]\+,\?\s\?\)\{4})\s\?\)\{2}" contains=stInt,stFloat,stBraces,stDelimiter nextgroup=stErr contained
+syn match stTextureType "junk 2DArray [-0-9]\+ (\(\s\?[-0-9]\+,\?\s\?\)\{3}\s\?)" contains=stInt,stDems,stBraces,stDelimiter nextgroup=stErr contained
+syn match stTextureType "shadow1D [-0-9]\+ ([-0-9]\+)" contains=stInt,stDems,stBraces nextgroup=stErr contained
+syn match stTextureType "shadow2D [-0-9]\+ (\([-0-9]\+,\?\s*\)\{2})" contains=stInt,stDems,stBraces nextgroup=stErr contained
+syn match stTextureType "shadowRect [-0-9]\+ (\([-0-9]\+,\?\s*\)\{2})" contains=stInt,stDems,stBraces nextgroup=stErr contained
+syn match stTextureType "shadow1DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{2})" contains=stInt,stDems,stBraces nextgroup=stErr contained
+syn match stTextureType "shadow2DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{3})" contains=stInt,stDems,stBraces nextgroup=stErr contained
 
 " TODO: texcoord <somethign> {{{2
 
@@ -150,6 +160,8 @@ hi def link stErr                  Error
 hi def link stString               String
 hi def link stOperator             Operator
 hi def link stBraces               Operator
+hi def link stConstant             Constant
+hi def link stDelimiter            Delimiter
 
 " Color links {{{1
 " Uncontained types {{{2
@@ -163,6 +175,7 @@ hi def link stTolerance            stState
 hi def link stSSBO                 stState
 
 " Contained types {{{2
+hi def link stGLext                stConstant
 hi def link stDrawType             stType
 hi def link stDrawArrayType        stType
 hi def link stDrawStage            stType
@@ -174,5 +187,7 @@ hi def link stProbeType            stType
 hi def link stRelativeProbeType    stType
 hi def link stToleranceType        stType
 hi def link stShadeType            stType
+hi def link stTextureType          stType
+hi def link stDems                 stType
 
 " vim: fdm=marker
