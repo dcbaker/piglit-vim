@@ -95,3 +95,67 @@ texparameter 1D depth_mode intensity
 texparameter 1D depth_mode luminance
 texparameter 1D depth_mode alpha
 texparameter 1D depth_mode red
+uniform vec4 transform[5] -1.0  1.0 0.0 1.0
+uniform vec4 color
+uniform ivec4 transform[5] -1.0  1.0 0.0 1.0
+uniform ivec4 color
+uniform uvec4 transform[5] -1.0  1.0 0.0 1.0
+uniform uvec4 color
+uniform dvec4 transform[5] -1.0  1.0 0.0 1.0
+uniform dvec4 color
+uniform float arg
+uniform float arg0
+uniform float expected_a  0x3fb3295f
+uniform float v 1.5
+uniform int src 0
+uniform int i
+uniform double d
+uniform double d 1.439583958
+uniform mat2 m
+uniform mat3 m
+uniform mat4 m
+uniform mat2x2 m
+uniform mat3x2 m
+uniform mat4x2 m
+uniform mat2x3 m
+uniform mat3x3 m
+uniform mat4x3 m
+uniform mat2x4 m
+uniform mat3x4 m
+uniform mat4x4 m
+uniform mat2 m 0.0 0.0  0.0 0.0
+uniform mat3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+uniform mat4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
+uniform mat2x2 m 0.0 0.0  0.0 0.0
+uniform mat3x2 m 0.0 0.0  0.0 0.0  0.0 0.0
+uniform mat4x2 m 0.0 0.0  0.0 0.0  0.0 0.0  0.0 0.0
+uniform mat2x3 m 0.0 0.0 0.0  0.0 0.0 0.0
+uniform mat3x3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+uniform mat4x3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+uniform mat2x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
+uniform mat3x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0 
+uniform mat4x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
+uniform dmat2 m
+uniform dmat3 m
+uniform dmat4 m
+uniform dmat2x2 m
+uniform dmat3x2 m
+uniform dmat4x2 m
+uniform dmat2x3 m
+uniform dmat3x3 m
+uniform dmat4x3 m
+uniform dmat2x4 m
+uniform dmat3x4 m
+uniform dmat4x4 m
+uniform dmat2 m 0.0 0.0  0.0 0.0
+uniform dmat3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+uniform dmat4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
+uniform dmat2x2 m 0.0 0.0  0.0 0.0
+uniform dmat3x2 m 0.0 0.0  0.0 0.0  0.0 0.0
+uniform dmat4x2 m 0.0 0.0  0.0 0.0  0.0 0.0  0.0 0.0
+uniform dmat2x3 m 0.0 0.0 0.0  0.0 0.0 0.0
+uniform dmat3x3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+uniform dmat4x3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+uniform dmat2x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
+uniform dmat3x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0 
+uniform dmat4x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0

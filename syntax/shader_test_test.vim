@@ -8,8 +8,9 @@ syn match stErr "\s*\S\+" nextgroup=stErr
 syn match stInt contained "-\?\d\+"
 syn match stFloat contained "-\?\d\+.\d\+"
 syn match stOctal contained "-\?0x\o\+"
+syn match stHex contained "-\?0x[0-9A-Fa-f]\+"
 syn match stStage contained "\(GL_VERTEX_SHADER\|GL_FRAGMENT_SHADER\|GL_GEOMETRY_SHADER\|GL_TESS_CONTROL_SHADER\|GL_TESS_EVALUATION_SHADER\|GL_COMPUTE_SHADER\)"
-syn match stString contained "[A-Za-z_]\+"
+syn match stString contained "[A-Za-z][A-Za-z0-9_]*"
 syn match stOperator contained "\(==\|!=\|>\|=>\|<\|<=\)"
 syn match stBraces contained "[(){}\[\]]"
 syn match stGLext contained "GL_[A-Z0-9_]\+"
@@ -175,7 +176,27 @@ syn match stTexparamDepth "luminance" contained nextgroup=stErr
 syn match stTexparamDepth "alpha" contained nextgroup=stErr
 syn match stTexparamDepth "red" contained nextgroup=stErr
 
-" TODO: uniform <somethign> {{{2
+" uniform {{{2
+syn region stUniformRegion matchgroup=stState start="^uniform" end="$" keepend oneline contains=stUniformContainer
+syn match stUniformContainer "float\s*" contained nextgroup=stUniformFloat,stErr
+syn match stUniformContainer "double\s*" contained nextgroup=stUniformFloat,stErr
+" TODO: it might be better to have seperate handles for the different types of
+" vecs
+syn match stUniformContainer "[iud]\?vec[2-4]\s*" contained nextgroup=stUniformVec,stErr
+syn match stUniformContainer "int\s*" contained nextgroup=stUniformInt,stErr
+" TODO: It might be better (though more work) to split out the mat handlers so
+" that they always match the correct number of values
+syn match stUniformContainer "d\?mat[2-4]\s*" contained nextgroup=stUniformMat,stErr
+syn match stUniformContainer "d\?mat[2-4]x[2-4]\s*" contained nextgroup=stUniformMat,stErr
+
+syn match stUniformVec "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
+syn match stUniformVec "[a-z0-9\[\]._]\+\s*\([-0-9.]\+\s*\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
+syn match stUniformFloat "[a-z0-9\[\]._]*" contained contains=stBraces,stString nextgroup=stErr
+syn match stUniformFloat "[a-z0-9\[\]._]\+\s*[-0-9a-fA-F.]\+" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
+syn match stUniformInt "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
+syn match stUniformInt "[a-z0-9\[\]._]\+\s*[-0-9]\+" contained contains=stBraces,stInt,stHex,stString nextgroup=stErr
+syn match stUniformMat "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
+syn match stUniformMat "[a-z0-9\[\]._]\+\s*\(\([-0-9.]\+\s*\)\{2,4}\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
 
 " TODO: subuniform <somethign> {{{2
 
@@ -201,6 +222,7 @@ hi def link stKey                  Keyword
 hi def link stType                 Type
 hi def link stInt                  Number
 hi def link stOctal                Number
+hi def link stHex                  Number
 hi def link stFloat                Float
 hi def link stErr                  Error
 hi def link stString               String
@@ -208,6 +230,7 @@ hi def link stOperator             Operator
 hi def link stBraces               Operator
 hi def link stConstant             Constant
 hi def link stDelimiter            Delimiter
+hi def link stStructure            Structure
 
 " Color links {{{1
 " Uncontained types {{{2
@@ -243,5 +266,6 @@ hi def link stTexparamMin          stConstant
 hi def link stTexparamMag          stConstant
 hi def link stTexparamSwiz         stConstant
 hi def link stTexparamDepth        stConstant
+hi def link stUniformContainer     stStructure
 
 " vim: fdm=marker
