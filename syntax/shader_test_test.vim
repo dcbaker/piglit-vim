@@ -189,14 +189,14 @@ syn match stUniformContainer "int\s*" contained nextgroup=stUniformInt,stErr
 syn match stUniformContainer "d\?mat[2-4]\s*" contained nextgroup=stUniformMat,stErr
 syn match stUniformContainer "d\?mat[2-4]x[2-4]\s*" contained nextgroup=stUniformMat,stErr
 
-syn match stUniformVec "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
-syn match stUniformVec "[a-z0-9\[\]._]\+\s*\([-0-9.]\+\s*\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
-syn match stUniformFloat "[a-z0-9\[\]._]*" contained contains=stBraces,stString nextgroup=stErr
-syn match stUniformFloat "[a-z0-9\[\]._]\+\s*[-0-9a-fA-F.]\+" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
-syn match stUniformInt "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
-syn match stUniformInt "[a-z0-9\[\]._]\+\s*[-0-9]\+" contained contains=stBraces,stInt,stHex,stString nextgroup=stErr
-syn match stUniformMat "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
-syn match stUniformMat "[a-z0-9\[\]._]\+\s*\(\([-0-9.]\+\s*\)\{2,4}\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
+syn match stUniformVec "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=stUniformVecVals
+syn match stUniformVecVals "\s*\([-0-9.]\+\s*\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
+syn match stUniformFloat "[a-z0-9\[\]_]*" contained contains=stBraces nextgroup=stUniformFloatVals
+syn match stUniformFloatVals "\s*[-0-9a-fA-F.]\+" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
+syn match stUniformInt "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=stErr
+syn match stUniformIntVals "\s*[-0-9]\+" contained contains=stBraces,stInt,stHex nextgroup=stUniformIntVals
+syn match stUniformMat "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=stUniformMatVals
+syn match stUniformMatVals "\s*\(\([-0-9.]\+\s*\)\{2,4}\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
 
 " subuniform {{{2
 syn region stSubUniformRegion matchgroup=stState start="^subuniform" end="$" keepend oneline contains=stSubUniformStage
