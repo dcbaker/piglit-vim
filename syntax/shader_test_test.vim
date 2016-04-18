@@ -44,7 +44,7 @@ syn match stACState "^atomic counters [-0-9]\+" contains=stInt nextgroup=stErr
 " clear {{{2
 syn region stClearRegion matchgroup=stState start=/^clear/ end=/$/ keepend oneline contains=stClearType
 syn match stClearType contained "$" nextgroup=stErr contained
-syn match stClearType contained "color \([-0-9]\+\s\?\)\{4}" contains=stInt nextgroup=stErr contained
+syn match stClearType contained "color \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr contained
 syn match stClearType contained "depth [-0-9]\+" contains=stInt nextgroup=stErr contained
 
 " clip plain {{{2
