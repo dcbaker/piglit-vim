@@ -5,10 +5,10 @@
 
 " Global {{{1
 syn match stErr "\s*\S\+" nextgroup=stErr
-syn match stInt contained "-\?\d\+"
-syn match stFloat contained "-\?\d\+.\d\+"
-syn match stOctal contained "-\?0x\o\+"
-syn match stHex contained "-\?0x[0-9A-Fa-f]\+"
+syn match stInt contained "\d\+"
+syn match stFloat contained "\d\+.\d\+"
+syn match stOctal contained "0x\o\+"
+syn match stHex contained "0x[0-9A-Fa-f]\+"
 syn match stStage contained "\(GL_VERTEX_SHADER\|GL_FRAGMENT_SHADER\|GL_GEOMETRY_SHADER\|GL_TESS_CONTROL_SHADER\|GL_TESS_EVALUATION_SHADER\|GL_COMPUTE_SHADER\)"
 syn match stString contained "[A-Za-z][A-Za-z0-9_]*"
 syn match stOperator contained "\(==\|!=\|>\|=>\|<\|<=\)"
