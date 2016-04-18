@@ -198,7 +198,10 @@ syn match stUniformInt "[a-z0-9\[\]._]\+\s*[-0-9]\+" contained contains=stBraces
 syn match stUniformMat "[a-z0-9\[\]._]\+" contained contains=stBraces,stString nextgroup=stErr
 syn match stUniformMat "[a-z0-9\[\]._]\+\s*\(\([-0-9.]\+\s*\)\{2,4}\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex,stString nextgroup=stErr
 
-" TODO: subuniform <somethign> {{{2
+" subuniform {{{2
+syn region stSubUniformRegion matchgroup=stState start="^subuniform" end="$" keepend oneline contains=stSubUniformStage
+syn match stSubUniformStage "[A-Z0-9_]\+\s*" contained contains=stStage nextgroup=stSubUniformArgs,stErr
+syn match stSubUniformArgs "\S\+ \S\+" contained nextgroup=stErr
 
 " TODO: parameter <somethign> {{{2
 

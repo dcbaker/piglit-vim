@@ -159,3 +159,5 @@ uniform dmat4x3 m 0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
 uniform dmat2x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
 uniform dmat3x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0 
 uniform dmat4x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
+subuniform GL_FRAGMENT_SHADER GetChan2 chan_full
+subuniform GL_FRAGMENT_SHADER GetChan[2] chan_full
