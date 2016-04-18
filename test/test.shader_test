@@ -161,3 +161,5 @@ uniform dmat3x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
 uniform dmat4x4 m 0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0  0.0 0.0 0.0 0.0
 subuniform GL_FRAGMENT_SHADER GetChan2 chan_full
 subuniform GL_FRAGMENT_SHADER GetChan[2] chan_full
+parameter local_vp 0 ( 0.0 , 0.0 , 0.0 , 0.0 )
+parameter env_fp 0 (0.0, 0.0, 0.0, 0.0 )

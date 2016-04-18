@@ -203,7 +203,10 @@ syn region stSubUniformRegion matchgroup=stState start="^subuniform" end="$" kee
 syn match stSubUniformStage "[A-Z0-9_]\+\s*" contained contains=stStage nextgroup=stSubUniformArgs,stErr
 syn match stSubUniformArgs "\S\+ \S\+" contained nextgroup=stErr
 
-" TODO: parameter <somethign> {{{2
+" parameter {{{2
+syn region stParameterRegion matchgroup=stState start="^parameter" end="$" keepend oneline contains=stParameterType
+syn match stParameterType "\s*\(env\|local\)_[fv]p\s*\d\+" contained contains=stInt nextgroup=stParameterFloat,stErr
+syn match stParameterFloat "\s*(\(\s*[0-9.-]\+\s*,\?\)\{4})" contained contains=stBraces,stFloat nextgroup=stErr
 
 " TODO: patch parameter <somethign> {{{2
 
@@ -270,5 +273,6 @@ hi def link stTexparamMag          stConstant
 hi def link stTexparamSwiz         stConstant
 hi def link stTexparamDepth        stConstant
 hi def link stUniformContainer     stStructure
+hi def link stParameterType        stType
 
 " vim: fdm=marker
