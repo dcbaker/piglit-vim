@@ -164,3 +164,7 @@ subuniform GL_FRAGMENT_SHADER GetChan2 chan_full
 subuniform GL_FRAGMENT_SHADER GetChan[2] chan_full
 parameter local_vp 0 ( 0.0 , 0.0 , 0.0 , 0.0 )
 parameter env_fp 0 (0.0, 0.0, 0.0, 0.0 )
+uniform dmat4x4 m  # this is a comment
+parameter env_fp 0 (0.0, 0.0, 0.0, 0.0 ) # this is also a comment
+parameter env_fp 0 (0.0, 0.0, 0.0, 0.0 ) ERROR
+uniform dmat4x4 m ERROR

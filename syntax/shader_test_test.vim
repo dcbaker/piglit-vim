@@ -4,7 +4,7 @@
 " and \s\+ replacements
 
 " Global {{{1
-syn match stErr "\s*\S\+" nextgroup=stErr
+syn match stErr "\s*#\@!\S\+" nextgroup=stErr
 syn match stInt contained "\d\+"
 syn match stFloat contained "\d\+.\d\+"
 syn match stOctal contained "0x\o\+"
@@ -21,7 +21,7 @@ syn match stDems contained "[1-3]D"
 
 " Commands {{{1
 " Draw {{{2
-syn region stDrawRegion matchgroup=stState start=/^draw/ end=/$/ keepend oneline contains=stDrawType
+syn region stDrawRegion matchgroup=stState start=/^draw/ end=/$/ keepend oneline contains=stDrawType,stComment
 syn match stDrawType contained "\s\?rect \([-0-8x]\+\s\?\)\{4}" contains=stOctal nextgroup=stErr contained
 syn match stDrawType contained "\s\?rect \([-0-9]\+\s\?\)\{4}" contains=stInt nextgroup=stErr contained
 syn match stDrawType contained "\s\?rect \([-0-9.]\+\s\?\)\{4}" contains=stFloat nextgroup=stErr contained
@@ -36,56 +36,56 @@ syn region stDrawType contained matchgroup=stDrawType start="arrays " end="$" ke
 syn match stDrawArraysType contained "[A-Za-z_]\+ \([-0-9]\+\s\?\)\{2}" contains=stInt,stString nextgroup=stErr contained
 
 " active shade program {{{r2
-syn match stASPState "^active shader program [A-Z_]\+" contains=stStage nextgroup=stErr
+syn match stASPState "^active shader program [A-Z_]\+" contains=stStage,stComment nextgroup=stErr
 
 " atomic counters {{{2
-syn match stACState "^atomic counters [-0-9]\+" contains=stInt nextgroup=stErr
+syn match stACState "^atomic counters [-0-9]\+" contains=stInt,stComment nextgroup=stErr
 
 " clear {{{2
-syn region stClearRegion matchgroup=stState start=/^clear/ end=/$/ keepend oneline contains=stClearType
+syn region stClearRegion matchgroup=stState start=/^clear/ end=/$/ keepend oneline contains=stClearType,stComment
 syn match stClearType contained "$" nextgroup=stErr contained
 syn match stClearType contained "color \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr contained
 syn match stClearType contained "depth [-0-9]\+" contains=stInt nextgroup=stErr contained
 
 " clip plain {{{2
-syn match stClipPlane "^clip plane \([-0-9.]\+\s\?\)\{4}" contains=stFloat nextgroup=stErr
+syn match stClipPlane "^clip plane \([-0-9.]\+\s\?\)\{4}" contains=stFloat,stComment nextgroup=stErr
 
 " compute {{{2
-syn match stCompute "^compute \([-0-9]\+\s\?\)\{3}" contains=stInt nextgroup=stErr
+syn match stCompute "^compute \([-0-9]\+\s\?\)\{3}" contains=stInt,stComment nextgroup=stErr
 
 " enable/disable {{{2
-syn region stEnableRegion matchgroup=stState start="^\(en\|dis\)able" end="$" contains=stEnableType oneline keepend
+syn region stEnableRegion matchgroup=stState start="^\(en\|dis\)able" end="$" contains=stEnableType,stComment oneline keepend
 syn match stEnableType "\(\s\?[A-Z_]\+\)\{2}" contains=stString nextgroup=stErr contained
 
 " fb {{{2
-syn region stFbRegion matchgroup=stState start=/^fb/ end=/$/ keepend oneline contains=stFbType
+syn region stFbRegion matchgroup=stState start=/^fb/ end=/$/ keepend oneline contains=stFbType,stComment
 " These cannot use contains since they contain a number alreayd and '2d' would
 " match and cause the highlight to break
 syn match stFbType "tex 2d\s\?" nextgroup=stInt,stErr contained
 syn match stFbType /tex layered 2DArray\s\?/ nextgroup=stInt,stErr contained
 
 " frustum {{{2
-syn match stFrustum "^frustum \([0-9.-]\+\s\?\)\{6}" contains=stFloat nextgroup=stErr
+syn match stFrustum "^frustum \([0-9.-]\+\s\?\)\{6}" contains=stFloat,stComment nextgroup=stErr
 
 " hint {{{2
-syn region stHintRegion matchgroup=stState start=/^hint/ end=/$/ keepend oneline contains=stHintType
+syn region stHintRegion matchgroup=stState start=/^hint/ end=/$/ keepend oneline contains=stHintType,stComment
 syn match stHintType "\(\s\?[A-Za-z_]\+\)\{2}" contains=stString nextgroup=stErr contained
 
 " image texture {{{2
-syn region stImageTextureRegion matchgroup=stState start="^image texture" end="$" keepend oneline contains=stImageTextureType
+syn region stImageTextureRegion matchgroup=stState start="^image texture" end="$" keepend oneline contains=stImageTextureType,stComment
 syn match stImageTextureType "\s\?[-0-9]\+ [A-Za-z]\+" contains=stInt,stString nextgroup=stErr contained
 
 " memory barrier {{{2
-syn region stMemoryBarrierRegion matchgroup=stState start="^memory barrier" end="$" keepend oneline contains=stMemoryBarrierType
+syn region stMemoryBarrierRegion matchgroup=stState start="^memory barrier" end="$" keepend oneline contains=stMemoryBarrierType,stComment
 syn match stMemoryBarrierType "\s\?[A-Za-z]\+" contains=stString nextgroup=stErr contained
 
 " ortho {{{2
-syn region stOrthoRegion matchgroup=stState start="^ortho" end="$" keepend oneline contains=stOrthoType
+syn region stOrthoRegion matchgroup=stState start="^ortho" end="$" keepend oneline contains=stOrthoType,stComment
 syn match stOrthoType "$" nextgroup=stErr contained
 syn match stOrthoType "\([-0-9.]\+\s\?\)\{4}" contains=stFloat nextgroup=stErr contained
 
 " probe: {{{2
-syn region stProbeRegion matchgroup=stState start="^probe" end="$" keepend oneline contains=stProbeType
+syn region stProbeRegion matchgroup=stState start="^probe" end="$" keepend oneline contains=stComment,stProbeType
 syn match stProbeType "rgba \([-0-9]\+\s\?\)\{2} \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr contained
 syn match stProbeType "rgb \([-0-9]\+\s\?\)\{2} \([-0-9.]\+\s\?\)\{3}" contains=stInt,stFloat nextgroup=stErr contained
 syn match stProbeType "all rgba \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr contained
@@ -96,23 +96,23 @@ syn match stProbeType "rect rgba \(\s\?(\([-.0-9]\+,\?\s*\)\{4})\)\{2}" contains
 syn match stProbeType "ssbo uint [-0-9]\+ \(>\|=>\|==\|<=\|<\|!=\) \(0x\)\?[-0-9.]\+" contains=stOperator,stInt,stOctal nextgroup=stErr contained
 
 " relative probe: {{{2
-syn region stProbeRegion matchgroup=stState start="^relative probe" end="$" keepend oneline contains=stRelativeProbeType
+syn region stProbeRegion matchgroup=stState start="^relative probe" end="$" keepend oneline contains=stRelativeProbeType,stComment
 syn match stRelativeProbeType "rgba (\([-0-9.]\+,\?\s\?\)\{2}) (\([-0-9.]\+,\?\s\?\)\{4})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
 syn match stRelativeProbeType "rgb (\([-0-9.]\+,\?\s\?\)\{2}) (\([-0-9.]\+,\?\s\?\)\{3})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
 syn match stRelativeProbeType "rect rgb (\([-0-9.]\+,\?\s\?\)\{4}) (\([-0-9.]\+,\?\s\?\)\{3})" contains=stInt,stFloat,stBraces nextgroup=stErr contained
 
 " tolerance {{{2
-syn match stTolerance "^tolerance \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat nextgroup=stErr
+syn match stTolerance "^tolerance \([-0-9.]\+\s\?\)\{4}" contains=stInt,stFloat,stComment nextgroup=stErr
 
 " shade model {{{2
-syn region stShadeRegion matchgroup=stState start="^shade model" end="$" keepend oneline contains=stShadeType
+syn region stShadeRegion matchgroup=stState start="^shade model" end="$" keepend oneline contains=stShadeType,stComment
 syn match stShadeType "\(flat\|smooth\)" nextgroup=stErr contained
 
 " ssbo {{{2
-syn match stSSBO "^ssbo [-0-9]\+" contains=stInt nextgroup=stErr
+syn match stSSBO "^ssbo [-0-9]\+" contains=stInt,stComment nextgroup=stErr
 
 " texture: {{{2
-syn region stTextureRegion matchgroup=stState start="^texture" end="$" keepend oneline contains=stTextureType
+syn region stTextureRegion matchgroup=stState start="^texture" end="$" keepend oneline contains=stTextureType,stComment
 " TODO: the GL type here could almost certainly be constrained better
 syn match stTextureType "rgbw [-0-9]\+ ([-0-9]\+, [-0-9]\+) GL_[A-Z0-9_]\+" contains=stInt,stBraces,stGLext,stDelimiter nextgroup=stErr contained
 syn match stTextureType "rgbw 1DArray [-0-9]\+ (\(\s*[-0-9]\+\s*,\?\)\{2}\s*)" contains=stInt,stDems,stBraces,stDelimiter nextgroup=stErr contained
@@ -127,11 +127,11 @@ syn match stTextureType "shadow1DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{2})" contai
 syn match stTextureType "shadow2DArray [-0-9]\+ (\([-0-9]\+,\?\s*\)\{3})" contains=stInt,stDems,stBraces nextgroup=stErr contained
 
 " texcoord {{{2
-syn match stTexcoord "^texcoord [0-9] (\s*\([-0-9.]\+\s*,\?\s*\)\{4})" contains=stInt,stFloat,stBraces,stDelimiter nextgroup=stErr
+syn match stTexcoord "^texcoord [0-9] (\s*\([-0-9.]\+\s*,\?\s*\)\{4})" contains=stInt,stFloat,stBraces,stDelimiter,stComment nextgroup=stErr
 
 " texparameter {{{2
 "
-syn region stTextureparamRegion matchgroup=stState start="^texparameter" end="$" keepend oneline contains=stTexparamTarget
+syn region stTextureparamRegion matchgroup=stState start="^texparameter" end="$" keepend oneline contains=stTexparamTarge,stCommentt
 syn match stTexparamTarget "1D\s*" contained nextgroup=stTexparamType,stErr
 syn match stTexparamTarget "2D\s*" contained nextgroup=stTexparamType,stErr
 syn match stTexparamTarget "3D\s*" contained nextgroup=stTexparamType,stErr
@@ -177,7 +177,7 @@ syn match stTexparamDepth "alpha" contained nextgroup=stErr
 syn match stTexparamDepth "red" contained nextgroup=stErr
 
 " uniform {{{2
-syn region stUniformRegion matchgroup=stState start="^uniform" end="$" keepend oneline contains=stUniformContainer
+syn region stUniformRegion matchgroup=stState start="^uniform" end="$" keepend oneline contains=stUniformContainer,stComment
 syn match stUniformContainer "float\s*" contained nextgroup=stUniformFloat,stErr
 syn match stUniformContainer "double\s*" contained nextgroup=stUniformFloat,stErr
 " TODO: it might be better to have seperate handles for the different types of
@@ -199,12 +199,12 @@ syn match stUniformMat "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=s
 syn match stUniformMatVals "\s*\(\([-0-9.]\+\s*\)\{2,4}\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
 
 " subuniform {{{2
-syn region stSubUniformRegion matchgroup=stState start="^subuniform" end="$" keepend oneline contains=stSubUniformStage
+syn region stSubUniformRegion matchgroup=stState start="^subuniform" end="$" keepend oneline contains=stSubUniformStage,stComment
 syn match stSubUniformStage "[A-Z0-9_]\+\s*" contained contains=stStage nextgroup=stSubUniformArgs,stErr
 syn match stSubUniformArgs "\S\+ \S\+" contained nextgroup=stErr
 
 " parameter {{{2
-syn region stParameterRegion matchgroup=stState start="^parameter" end="$" keepend oneline contains=stParameterType
+syn region stParameterRegion matchgroup=stState start="^parameter" end="$" keepend oneline contains=stParameterType,stComment
 syn match stParameterType "\s*\(env\|local\)_[fv]p\s*\d\+" contained contains=stInt nextgroup=stParameterFloat,stErr
 syn match stParameterFloat "\s*(\(\s*[0-9.-]\+\s*,\?\)\{4})" contained contains=stBraces,stFloat nextgroup=stErr
 
@@ -222,6 +222,10 @@ syn match stParameterFloat "\s*(\(\s*[0-9.-]\+\s*,\?\)\{4})" contained contains=
 
 " TODO: verify program_interface_query <something> {{{2
 
+
+" Comments {{{1
+syn region stComment start="#" end="$" keepend display oneline contains=stTodo,@spell
+
 " Color definitions {{{1
 hi def link stState                Statement
 hi def link stKey                  Keyword
@@ -237,6 +241,7 @@ hi def link stBraces               Operator
 hi def link stConstant             Constant
 hi def link stDelimiter            Delimiter
 hi def link stStructure            Structure
+hi def link stComment              Comment
 
 " Color links {{{1
 " Uncontained types {{{2
