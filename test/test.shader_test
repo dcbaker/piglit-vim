@@ -168,3 +168,7 @@ uniform dmat4x4 m  # this is a comment
 parameter env_fp 0 (0.0, 0.0, 0.0, 0.0 ) # this is also a comment
 parameter env_fp 0 (0.0, 0.0, 0.0, 0.0 ) ERROR
 uniform dmat4x4 m ERROR
+link success
+link error
+link
+link this is an ERROR

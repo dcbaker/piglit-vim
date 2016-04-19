@@ -213,6 +213,11 @@ syn match stParameterFloat "\s*(\(\s*[0-9.-]\+\s*,\?\)\{4})" contained contains=
 " TODO: provoking vertex <somethign> {{{2
 
 " link: {{{2
+syn region stLinkRegion matchgroup=stState start="^link\s*" end="$" keepend oneline contains=stComment,stLinkType
+syn match stLinkType ".*" contained contains=stErr nextgroup=stErr
+syn match stLinkType "success" contained nextgroup=stErr
+syn match stLinkType "error" contained nextgroup=stErr
+
 " TODO: link error
 " TODO: link success
 
@@ -279,5 +284,6 @@ hi def link stTexparamSwiz         stConstant
 hi def link stTexparamDepth        stConstant
 hi def link stUniformContainer     stStructure
 hi def link stParameterType        stType
+hi def link stLinkType             stType
 
 " vim: fdm=marker
