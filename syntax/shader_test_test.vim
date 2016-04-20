@@ -193,8 +193,8 @@ syn match stUniformVec "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=s
 syn match stUniformVecVals "\s*\([-0-9.]\+\s*\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
 syn match stUniformFloat "[a-z0-9\[\]_]*" contained contains=stBraces nextgroup=stUniformFloatVals
 syn match stUniformFloatVals "\s*[-0-9a-fA-F.]\+" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
-syn match stUniformInt "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=stErr
-syn match stUniformIntVals "\s*[-0-9]\+" contained contains=stBraces,stInt,stHex nextgroup=stUniformIntVals
+syn match stUniformInt "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=stUniformIntVals
+syn match stUniformIntVals "\s*[-0-9]\+" contained contains=stBraces,stInt,stHex nextgroup=stErr
 syn match stUniformMat "[a-z0-9\[\]_]\+" contained contains=stBraces nextgroup=stUniformMatVals
 syn match stUniformMatVals "\s*\(\([-0-9.]\+\s*\)\{2,4}\)\{2,4}" contained contains=stBraces,stInt,stFloat,stHex nextgroup=stErr
 
