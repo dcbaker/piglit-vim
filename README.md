@@ -10,6 +10,7 @@ Supported Formats
 =================
 
 - shader test
+- glsl parser test
 
 
 Requirements
@@ -23,4 +24,7 @@ I developed this against: https://github.com/tikhomirov/vim-glsl
 TODO
 ====
 
-- glsl parser test
+- Finish the [test] section of shader_test (TODOs)
+- Find syntax highlighting for ARB assembly
+- Rework [require] section, it's woefully incomplete
+- Rework some of the [test] section which flag red even when adding correct code
