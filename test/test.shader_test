@@ -172,3 +172,4 @@ link success
 link error
 link
 link this is an ERROR
+texture checkerboard 1 0 (2, 2) (0, 0, 0, 0) (1, 1, 1, 1)
