@@ -204,9 +204,11 @@ syn match stSubUniformStage "[A-Z0-9_]\+\s*" contained contains=stStage nextgrou
 syn match stSubUniformArgs "\S\+ \S\+" contained nextgroup=stErr
 
 " parameter {{{2
-syn region stParameterRegion matchgroup=stState start="^parameter" end="$" keepend oneline contains=stParameterType,stComment
-syn match stParameterType "\s*\(env\|local\)_[fv]p\s*\d\+" contained contains=stInt nextgroup=stParameterFloat,stErr
-syn match stParameterFloat "\s*(\(\s*[0-9.-]\+\s*,\?\)\{4})" contained contains=stBraces,stFloat nextgroup=stErr
+syn region stParameterRegion matchgroup=stState start="^parameter" end="$" keepend oneline contains=stParameterErr,stParameterType,stComment
+syn match stParameterErr "[a-zA-Z0-9_]\+" contained nextgroup=stParameterInt,stErr
+syn match stParameterType "\s*\(env\|local\)_[fv]p*" contained nextgroup=stParameterInt,stErr
+syn match stParameterInt "\s*\d" contained contains=stInt nextgroup=stParameterFloat,stErr
+syn match stParameterFloat "\s*(\(\s*[0-9.-]\+\s*,\?\)\{4})" contained contains=stBraces,stFloat,stDelimiter nextgroup=stErr
 
 " TODO: patch parameter <somethign> {{{2
 
@@ -285,5 +287,6 @@ hi def link stTexparamDepth        stConstant
 hi def link stUniformContainer     stStructure
 hi def link stParameterType        stType
 hi def link stLinkType             stType
+hi def link stParameterErr         stErr
 
 " vim: fdm=marker
