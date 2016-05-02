@@ -36,7 +36,7 @@ syn region stHeaderRegion
 	\ fold
 	\ keepend
 	\ contains=stHeader,@ARB_FP
-syn include @ARB_VP syntax/frag_program.vim " Require vim-arb_assembly for highlighting
+syn include @ARB_VP syntax/vert_program.vim " Require vim-arb_assembly for highlighting
 syn region stHeaderRegion
 	\ start="^\[vertex program\]$"
 	\ end="^\["me=s-1
