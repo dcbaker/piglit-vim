@@ -2,6 +2,15 @@
 " Maintainer: Dylan Baker <baker.dylan.c@gmail.com>
 
 " Syntax {{{1
+syn include @GLSL syntax/glsl.vim " Require glsl to do glsl highlighting
+unlet b:current_syntax
+syn include @ARB_FP syntax/frag_program.vim " Require vim-arb_assembly for highlighting
+unlet b:current_syntax
+syn include @ARB_VP syntax/vert_program.vim " Require vim-arb_assembly for highlighting
+unlet b:current_syntax
+syn include @TEST_SECTION syntax/shader_test_test.vim
+unlet b:current_syntax
+
 if exists("b:current_syntax") && b:current_syntax == "shader_test"
 	finish
 endif
@@ -22,28 +31,24 @@ syn region stHeaderRegion
 	\ keepend
     \ contains=stRequire,stHeader
 
-syn include @GLSL syntax/glsl.vim " Require glsl to do glsl highlighting
 syn region stHeaderRegion
 	\ start="^\[\(vertex\|fragment\|geometry\|tessalation\|compute\) shader\]$"
 	\ end="^\["me=s-1
 	\ fold
 	\ keepend
 	\ contains=stHeader,@GLSL
-syn include @ARB_FP syntax/frag_program.vim " Require vim-arb_assembly for highlighting
 syn region stHeaderRegion
 	\ start="^\[fragment program\]$"
 	\ end="^\["me=s-1
 	\ fold
 	\ keepend
 	\ contains=stHeader,@ARB_FP
-syn include @ARB_VP syntax/vert_program.vim " Require vim-arb_assembly for highlighting
 syn region stHeaderRegion
 	\ start="^\[vertex program\]$"
 	\ end="^\["me=s-1
 	\ fold
 	\ keepend
 	\ contains=stHeader,@ARB_VP
-syn include @TEST_SECTION syntax/shader_test_test.vim
 syn region stHeaderRegion
 	\ start="^\[test\]$"
 	\ end="^\["me=s-1
