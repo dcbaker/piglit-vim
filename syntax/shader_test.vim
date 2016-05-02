@@ -2,16 +2,18 @@
 " Maintainer: Dylan Baker <baker.dylan.c@gmail.com>
 
 " Syntax {{{1
+" External syntax {{{2
 syn include @GLSL syntax/glsl.vim " Require glsl to do glsl highlighting
 unlet b:current_syntax
 syn include @ARB_FP syntax/frag_program.vim " Require vim-arb_assembly for highlighting
 unlet b:current_syntax
 syn include @ARB_VP syntax/vert_program.vim " Require vim-arb_assembly for highlighting
 unlet b:current_syntax
-syn include @TEST_SECTION syntax/shader_test_test.vim
-unlet b:current_syntax
 
-if exists("b:current_syntax") && b:current_syntax == "shader_test"
+" Internal syntax {{{2
+syn include @TEST_SECTION syntax/shader_test_test.vim
+
+if exists("b:current_syntax")
 	finish
 endif
 
