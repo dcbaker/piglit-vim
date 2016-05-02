@@ -20,6 +20,9 @@ This relies on a working glsl vim syntax file, vim does not include such a file.
 
 I developed this against: https://github.com/tikhomirov/vim-glsl
 
+This also requires a working ARB assembly highlighter for Vertex and Fragment Programs. The only one I know of is the one I wrote:
+https://github.com/dcbaker/vim-arb_assembly.git
+
 
 TODO
 ====

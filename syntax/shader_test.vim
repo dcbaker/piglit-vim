@@ -24,11 +24,25 @@ syn region stHeaderRegion
 
 syn include @GLSL syntax/glsl.vim " Require glsl to do glsl highlighting
 syn region stHeaderRegion
-	\ start="^\[\(vertex\|fragment\|geometry\|tessalation\|compute\) \(shader\|program\)\]$"
+	\ start="^\[\(vertex\|fragment\|geometry\|tessalation\|compute\) shader\]$"
 	\ end="^\["me=s-1
 	\ fold
 	\ keepend
 	\ contains=stHeader,@GLSL
+syn include @ARB_FP syntax/frag_program.vim " Require vim-arb_assembly for highlighting
+syn region stHeaderRegion
+	\ start="^\[fragment program\]$"
+	\ end="^\["me=s-1
+	\ fold
+	\ keepend
+	\ contains=stHeader,@ARB_FP
+syn include @ARB_VP syntax/frag_program.vim " Require vim-arb_assembly for highlighting
+syn region stHeaderRegion
+	\ start="^\[vertex program\]$"
+	\ end="^\["me=s-1
+	\ fold
+	\ keepend
+	\ contains=stHeader,@ARB_VP
 syn include @TEST_SECTION syntax/shader_test_test.vim
 syn region stHeaderRegion
 	\ start="^\[test\]$"
