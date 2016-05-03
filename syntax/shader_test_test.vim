@@ -22,18 +22,19 @@ syn match stDems contained "[1-3]D"
 " Commands {{{1
 " Draw {{{2
 syn region stDrawRegion matchgroup=stState start=/^draw/ end=/$/ keepend oneline contains=stDrawType,stComment
-syn match stDrawType contained "\s\?rect \([-0-8x]\+\s\?\)\{4}" contains=stOctal nextgroup=stErr contained
-syn match stDrawType contained "\s\?rect \([-0-9]\+\s\?\)\{4}" contains=stInt nextgroup=stErr contained
-syn match stDrawType contained "\s\?rect \([-0-9.]\+\s\?\)\{4}" contains=stFloat nextgroup=stErr contained
-syn match stDrawType contained "\s\?rect \(ortho\|patch\|ortho patch\) \([-0-8x]\+\s\?\)\{4}" contains=stOctal nextgroup=stErr contained
-syn match stDrawType contained "\s\?rect \(ortho\|patch\|ortho patch\) \([-0-9]\+\s\?\)\{4}" contains=stInt nextgroup=stErr contained
-syn match stDrawType contained "\s\?rect \(ortho\|patch\|ortho patch\) \([-0-9.]\+\s\?\)\{4}" contains=stFloat nextgroup=stErr contained
-syn match stDrawType contained "rect tex \([-0-8x]\+\s\?\)\{8}" contains=stOctal nextgroup=stErr contained
-syn match stDrawType contained "rect tex \([-0-9]\+\s\?\)\{8}" contains=stInt nextgroup=stErr contained
-syn match stDrawType contained "rect tex \([-0-9.]\+\s\?\)\{8}" contains=stFloat nextgroup=stErr contained
-syn match stDrawType contained "instanced rect [-0-9]\+ \([-0-9.]\+\s\?\)\{4}" contains=stInt,StFloat nextgroup=stErr contained
-syn region stDrawType contained matchgroup=stDrawType start="arrays " end="$" keepend oneline contains=stDrawArraysType contained
-syn match stDrawArraysType contained "[A-Za-z_]\+ \([-0-9]\+\s\?\)\{2}" contains=stInt,stString nextgroup=stErr contained
+syn match stDrawType       "\s\?rect \([-0-8x]\+\s\?\)\{4}"                               contained contains=stOctal        nextgroup=stErr
+syn match stDrawType       "\s\?rect \([-0-9]\+\s\?\)\{4}"                                contained contains=stInt          nextgroup=stErr
+syn match stDrawType       "\s\?rect \([-0-9\.]\+\s\?\)\{4}"                              contained contains=stFloat        nextgroup=stErr
+syn match stDrawType       "\s\?rect \(ortho\|patch\|ortho patch\) \([-0-8x]\+\s\?\)\{4}" contained contains=stOctal        nextgroup=stErr
+syn match stDrawType       "\s\?rect \(ortho\|patch\|ortho patch\) \([-0-9]\+\s\?\)\{4}"  contained contains=stInt          nextgroup=stErr
+syn match stDrawType       "\s\?rect \(ortho\|patch\|ortho patch\) \([-0-9.]\+\s\?\)\{4}" contained contains=stFloat        nextgroup=stErr
+syn match stDrawType       "rect tex \([-0-8x]\+\s\?\)\{8}"                               contained contains=stOctal        nextgroup=stErr
+syn match stDrawType       "rect tex \([-0-9]\+\s\?\)\{8}"                                contained contains=stInt          nextgroup=stErr
+syn match stDrawType       "rect tex \([-0-9.]\+\s\?\)\{8}"                               contained contains=stFloat        nextgroup=stErr
+syn match stDrawType       "instanced rect [-0-9]\+ \([-0-9.]\+\s\?\)\{4}"                contained contains=stInt,StFloat  nextgroup=stErr
+syn match stDrawArraysType "[A-Za-z_]\+ \([-0-9]\+\s\?\)\{2}"                             contained contains=stInt,stString nextgroup=stErr
+
+syn region stDrawType   matchgroup=stDrawType start="arrays " end="$" keepend oneline contains=stDrawArraysType contained
 
 " active shade program {{{r2
 syn match stASPState "^active shader program [A-Z_]\+" contains=stStage,stComment nextgroup=stErr
